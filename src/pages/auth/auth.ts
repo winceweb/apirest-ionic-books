@@ -11,21 +11,19 @@ import 'rxjs/add/operator/map';
 })
 export class Auth {
   booksPage = Books;
-
-  allUsers: any;
+  users: any;
 
   constructor(private usersService: UsersService) {
 
   }
 
   ionViewDidLoad(){
-    this.usersService.get().map(
-      response => response.json())
-      .subscribe(
-        response => {
-            console.log(response);
-        }
-      );
+    this.usersService.get().then(data => {
+        this.users = data;
+        console.log(this.users);
+    }).catch(err => {
+      console.log('Error loading users');
+    });
   }
 
 }

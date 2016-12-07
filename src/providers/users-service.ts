@@ -11,12 +11,21 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class UsersService {
 
+  users: any;
+
   constructor(public http: Http) {
     console.log('Hello UsersService Provider');
   }
 
-  get(){
-    return this.http.get('http://localhost:4000/users');
+  get() {
+    return new Promise(resolve => {
+      this.http.get('http://localhost:4000/users')
+      .map(result => result.json())
+      .subscribe(result => {
+          this.users = result;
+          resolve(this.users);
+      })
+    });
   }
 
 }

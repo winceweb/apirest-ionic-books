@@ -11,8 +11,30 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class BooksService {
 
+  books: any;
+
   constructor(public http: Http) {
     console.log('Hello BooksService Provider');
   }
+
+  // get(){
+  //   return this.http.get('http://localhost:4000/books').map(res => res.json())
+  //   .map(books => {
+  //     return new Books(books);
+  //   }).toPromise();
+  // }
+
+
+    get() {
+      return new Promise(resolve => {
+        this.http.get('http://localhost:4000/books')
+        .map(result => result.json())
+        .subscribe(result => {
+            this.books = result;
+            resolve(this.books);
+        })
+      });
+    }
+
 
 }
