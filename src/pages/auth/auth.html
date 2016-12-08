@@ -9,22 +9,26 @@
 
 <ion-content padding>
 
-  <ion-list inset>
-    <ion-item>
-      <ion-label>Username</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Password</ion-label>
-      <ion-input type="password"></ion-input>
-    </ion-item>
-    <ion-item>
-      <button ion-button full large color="default">Se connecter</button>
-    </ion-item>
-  </ion-list>
+  <form (ngSubmit)="logForm()">
 
-  <ion-card-content>
-    <button ion-button color="default" medium outline [navPush]="booksPage">Livres</button>
-  </ion-card-content>
+    <ion-list inset>
+      <ion-item>
+        <ion-label>Username</ion-label>
+        <ion-input type="text" [(ngModel)]="dataAuth.name" name="name" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Password</ion-label>
+        <ion-input type="password" [(ngModel)]="dataAuth.password" name="password" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <button ion-button full large color="default" type="submit">Se connecter</button>
+      </ion-item>
+    </ion-list>
+
+    <ion-card-content>
+      <button ion-button color="default" medium outline [navPush]="booksPage">Livres</button>
+    </ion-card-content>
+
+  </form>
 
 </ion-content>

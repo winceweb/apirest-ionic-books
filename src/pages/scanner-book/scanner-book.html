@@ -1,0 +1,34 @@
+<!--
+  Generated template for the ScannerBook page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>ScannerBook</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <form (ngSubmit)="scanBook()">
+
+    <ion-list inset>
+      <ion-item>
+        <ion-label>BarCode</ion-label>
+        <ion-input type="text" [(ngModel)]="BarCode.label" name="label" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <button ion-button full large color="default" type="submit">J'ai lu ce livre</button>
+      </ion-item>
+    </ion-list>
+  </form>
+
+  <ion-card-content>
+    <button ion-button color="default" medium outline [navPush]="booksPage">Livres</button>
+  </ion-card-content>
+</ion-content>

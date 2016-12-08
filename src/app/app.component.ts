@@ -1,13 +1,16 @@
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
+import { Storage } from '@ionic/storage';
+import { UsersService } from '../providers/users-service';
 
 import { Auth } from '../pages/auth/auth';
 import { Books } from '../pages/books/books';
-
+import { ScannerBookPage } from '../pages/scanner-book/scanner-book';
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
+  providers: [UsersService]
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
@@ -16,13 +19,24 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform) {
+  constructor(
+    public platform: Platform,
+    public storage: Storage,
+    private usersService: UsersService
+  ) {
     this.initializeApp();
+
+    this.storage.get('userId').then((val) => {
+      if(val != null){
+
+      }
+    });
 
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Se connecter', component: Auth },
-      { title: 'Livres', component: Books }
+      { title: 'Livres', component: Books },
+      { title: 'Scanner', component: ScannerBookPage }
     ];
 
   }

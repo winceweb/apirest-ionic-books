@@ -10,11 +10,11 @@
 <ion-content>
   <ion-list>
 
-    <button ion-item *ngFor="let book of books" (click)="read($event, book)">
-      <p>Titre : {{book.title}}</p>
+    <button ion-item *ngFor="let book of books">
       <p>Auteur : {{book.author}}</p>
+      <p>{{book.description}}</p>
       <div class="book-description" item-right>
-        {{book.description}}
+        {{book.title}}
       </div>
     </button>
 
